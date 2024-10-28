@@ -1,0 +1,34 @@
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col">
+            <h3>Create Warehouse</h3>
+        </div>
+        <div class="col text-right">
+            <a href="#" routerLink="/warehouse/list" class="btn btn-secondary btn-sm">Back To Warehouse List</a>
+        </div>
+    </div>
+    <br />
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
+
+        <div class="form-group">
+            <label for="maximumStockLevel">Maximum Stock Level:</label>
+            <input formControlName="maximumStockLevel" id="maximumStockLevel" type="number" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="allowedMaterialType">Allowed Material Type:</label>
+            <select formControlName="allowedMaterialType" id="allowedMaterialType" class="form-control">
+                <option value="">- Select -</option>
+                <option value="NonHazardous">
+                    NonHazardous
+                </option>
+                <option value="Hazardous">
+                    Hazardous
+                </option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Create</button>
+    </form>
+</div>

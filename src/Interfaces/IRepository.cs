@@ -7,6 +7,8 @@ namespace StockManagementSystem.Interfaces
     {
         Task Add(T item);
 
+        Task Update(T item);
+
         Task<T?> GetById(int id);
 
         Task<List<T>> GetAll();

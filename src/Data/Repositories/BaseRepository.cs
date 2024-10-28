@@ -22,12 +22,18 @@ namespace StockManagementSystem.Data.Repositories
             await Context.SaveChangesAsync();
         }
 
-        public async Task<T?> GetById(int id)
+        public async Task Update(T item)
+        {
+            DbSet.Update(item);
+            await Context.SaveChangesAsync();
+        }
+
+        public virtual async Task<T?> GetById(int id)
         {
             return await DbSet.FirstOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task<List<T>> GetAll()
+        public virtual async Task<List<T>> GetAll()
         {
             return await DbSet.ToListAsync();
         }

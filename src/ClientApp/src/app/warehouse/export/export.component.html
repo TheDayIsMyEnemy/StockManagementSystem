@@ -1,0 +1,36 @@
+<div class="container">
+    <br />
+    <h3>Warehouse Export Request</h3>
+    <br />
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col text-right">
+                    <a href="#" routerLink="/warehouse/{{warehouseId}}/details" class="btn btn-secondary btn-sm">Back To
+                        Warehouse Details</a>
+                </div>
+            </div>
+        </div>
+
+        <form [formGroup]="exportProductForm" (ngSubmit)="onSubmit(exportProductForm)">
+
+            <div class="form-group">
+                <label for="name">ProductId:</label>
+                <select formControlName="productId" id="productId" class="form-control">
+                    <option value="">- Select -</option>
+                    <option *ngFor="let item of warehouse.items">
+                        {{ item.productId }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" [min]="1" [step]="1" formControlName="quantity" id="quantity">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Export</button>
+
+        </form>
+    </div>
+</div>

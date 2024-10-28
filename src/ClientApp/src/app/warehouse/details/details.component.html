@@ -1,0 +1,61 @@
+<div class="container">
+    <br />
+    <h3>Warehouse Details</h3>
+    <br />
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h4>Warehouse</h4>
+                </div>
+                <div class="col text-right">
+                    <a href="#" routerLink="/warehouse/list" class="btn btn-secondary btn-sm">Back To Warehouse List</a>
+                    <a href="#" [routerLink]="['/warehouse/', warehouse.id, 'import']" class="btn btn-info btn-sm">
+                        Import
+                    </a>
+                    <a href="#" [routerLink]="['/warehouse/', warehouse.id, 'export']" class="btn btn-info btn-sm">
+                        Export
+                    </a>
+                </div>
+            </div>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Id:</b> {{ warehouse.id }}</li>
+            <li class="list-group-item"><b>Allowed Material Type:</b> {{ warehouse.allowedMaterialType }}</li>
+            <li class="list-group-item"><b>Maximum Stock Level:</b> {{ warehouse.maximumStockLevel }}</li>
+            <li class="list-group-item"><b>Current Stock Level:</b> {{ warehouse.currentStockLevel }}</li>
+            <li class="list-group-item"><b>Free Stock Space:</b> {{ warehouse.freeStockSpace }}</li>
+        </ul>
+    </div>
+    <br />
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <h4>Warehouse History</h4>
+                </div>
+                <div class="col text-right">
+                    <!-- <a href="#" routerLink="/warehouse/list" class="btn btn-secondary btn-sm">Back To Warehouse List</a> -->
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered table-sm">
+            <tr>
+                <th>Product Id</th>
+                <th>Operation Type</th>
+                <th>Previous Quantity</th>
+                <th>Current Quantity</th>
+                <th>Created At Utc</th>
+            </tr>
+            <tr *ngFor="let log of warehouse.itemsLog">
+                <td>{{ log.productId }}</td>
+                <td>{{ log.operationType }}</td>
+                <td>{{ log.previousQuantity }}</td>
+                <td>{{ log.currentQuantity }}</td>
+                <td>{{ log.createdAtUtc }}</td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>

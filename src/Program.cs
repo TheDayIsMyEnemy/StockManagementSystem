@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using StockManagementSystem.Data;
@@ -23,22 +24,26 @@ builder.Services.AddIdentityServer()
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IWarehouseRepository, WarehouseRepository>();
-
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
-
 builder.Services.AddSingleton<IProductFactory, ProductFactory>();
+builder.Services.AddSingleton<IWarehouseFactory, WarehouseFactory>();
 builder.Services.AddSingleton<IWarehouseOperationFactory, WarehouseOperationFactory>();
 
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+// app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 

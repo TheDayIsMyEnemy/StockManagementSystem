@@ -12,8 +12,10 @@ namespace StockManagementSystem.Models
             PreviousQuantity = previousQuantity;
             CurrentQuantity = currentQuantity;
             OperationType = operationType;
-            Created = DateTime.UtcNow;
+            CreatedAtUtc = DateTime.UtcNow;
         }
+
+        public int WarehouseId { get; private set; }
 
         public int ProductId { get; private set; }
 
@@ -23,7 +25,6 @@ namespace StockManagementSystem.Models
 
         public WarehouseOperationType OperationType { get; private set; }
 
-        public DateTime Created { get; private set; }
-
+        public DateTime CreatedAtUtc { get; private set; }
     }
 }

@@ -7,19 +7,19 @@ namespace StockManagementSystem.Services
     {
         public void HandleRequest(Warehouse warehouse, Product product, int quantity)
         {
-            var item = warehouse.Items.FirstOrDefault(i => i.Id == product.Id);
-            if (item == null)
+            var existingItem = warehouse.Items.FirstOrDefault(i => i.ProductId == product.Id);
+            if (existingItem == null)
             {
                 throw new Exception("Product does not exist");
             }
 
-            int previousQuantity = item.Quantity;
+            int previousQuantity = existingItem?.Quantity ?? 0;
 
             warehouse.Export(product.Id, quantity);
 
-            int currentQuantity = item.Quantity;
+            int currentQuantity = existingItem!.Quantity;
 
-            warehouse.AddLog(product.Id, previousQuantity, currentQuantity, WarehouseOperationType.Export);
+            warehouse.AddWarehouseItemLog(product.Id, previousQuantity, currentQuantity, WarehouseOperationType.Export);
         }
     }
 }

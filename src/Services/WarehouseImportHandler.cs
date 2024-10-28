@@ -17,12 +17,15 @@ namespace StockManagementSystem.Services
                 throw new Exception("Not enough storage space");
             }
 
-            int previousQuantity
-                = warehouse.Items.FirstOrDefault(i => i.Id == product.Id)?.Quantity ?? 0;
+            var existingItem = warehouse.Items.FirstOrDefault(i => i.ProductId == product.Id);
+
+            int previousQuantity = existingItem?.Quantity ?? 0;
 
             warehouse.Import(product.Id, quantity);
 
-            warehouse.AddLog(product.Id, previousQuantity, quantity, WarehouseOperationType.Import);
+            int currentQuantity = existingItem?.Quantity ?? quantity;
+
+            warehouse.AddWarehouseItemLog(product.Id, previousQuantity, currentQuantity, WarehouseOperationType.Import);
         }
     }
 }

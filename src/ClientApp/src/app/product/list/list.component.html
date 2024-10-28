@@ -1,0 +1,24 @@
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col">
+            <h3>Products</h3>
+        </div>
+        <div class="col text-right">
+            <a href="#" routerLink="/product/create/" class="btn btn-success btn-sm">Create New</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-sm">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Material Type</th>
+        </tr>
+        <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.materialType }}</td>
+        </tr>
+    </table>
+</div>

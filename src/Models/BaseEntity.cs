@@ -1,7 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace StockManagementSystem.Models
 {
     public abstract class BaseEntity
     {
-        public virtual int Id { get; }
+        public int Id { get; protected set; }
     }
 }

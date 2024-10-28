@@ -1,0 +1,40 @@
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col">
+            <h3>Warehouses</h3>
+        </div>
+        <div class="col text-right">
+            <a href="#" routerLink="/warehouse/create/" class="btn btn-success btn-sm">Create New</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-sm">
+        <tr>
+            <th>Id</th>
+            <th>Allowed Material Type</th>
+            <th>Maximum Stock Level</th>
+            <th>Current Stock Level</th>
+            <th>Free Stock Space</th>
+            <th width="200px"></th>
+        </tr>
+        <tr *ngFor="let warehouse of warehouses">
+            <td>{{ warehouse.id }}</td>
+            <td>{{ warehouse.allowedMaterialType }}</td>
+            <td>{{ warehouse.maximumStockLevel }}</td>
+            <td>{{ warehouse.currentStockLevel }}</td>
+            <td>{{ warehouse.freeStockSpace }}</td>
+            <td class="text-right">
+                <a href="#" [routerLink]="['/warehouse/', warehouse.id, 'details']" class="btn btn-info btn-sm">
+                    View
+                </a>
+                <!-- <a href="#" [routerLink]="['/warehouse/', warehouse.id, 'import']" class="btn btn-info btn-sm">
+                    Import
+                </a>
+                <a href="#" [routerLink]="['/warehouse/', warehouse.id, 'export']" class="btn btn-info btn-sm">
+                    Export
+                </a> -->
+            </td>
+        </tr>
+    </table>
+</div>
